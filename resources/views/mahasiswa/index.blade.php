@@ -30,16 +30,19 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($data as $item)
+                        
                     <tr>
                         <td>1</td>
-                        <td>1001</td>
-                        <td>Ani</td>
-                        <td>Ilmu Komputer</td>
+                        <td>{{$item->nim}}</td>
+                        <td>{{$item->nama}}</td>
+                        <td>{{$item->jurusan}}</td>
                         <td>
                             <a href='' class="btn btn-warning btn-sm">Edit</a>
                             <a href='' class="btn btn-danger btn-sm">Del</a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
