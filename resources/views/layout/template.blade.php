@@ -11,14 +11,7 @@
 
 <body class="bg-light">
     <main class="container">
-        @if (Session::has('success'))
-            <div class="pt-3">
-                <div class="alert alert-success">
-                    {{Session::get('success')}}
-                </div>
-            </div>
-            
-        @endif
+        @include('komponen.pesan')
         @yield('konten')
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
