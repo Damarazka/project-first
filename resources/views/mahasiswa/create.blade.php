@@ -1,7 +1,17 @@
 @extends('layout.template')
 
 @section('konten')
-    
+    @if ($errors->any())
+        <div class="pt-3">
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $item)
+                        <li>{{$item}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    @endif
 
 <!-- START FORM -->
 <form action='{{url('mahasiswa')}}' method='post'>
@@ -10,19 +20,19 @@
         <div class="mb-3 row">
             <label for="nim" class="col-sm-2 col-form-label">NIM</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control" name='nim' id="nim">
+                <input type="number" class="form-control" name='nim' value="{{Session::get('nim')}}" id="nim">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="nama" class="col-sm-2 col-form-label">Nama</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name='nama' id="nama">
+                <input type="text" class="form-control" name='nama' value="{{Session::get('nama')}}" id="nama">
             </div>
         </div>
         <div class="mb-3 row">
             <label for="jurusan" class="col-sm-2 col-form-label">Jurusan</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name='jurusan' id="jurusan">
+                <input type="text" class="form-control" name='jurusan' value="{{Session::get('jurusan')}}" id="jurusan">
             </div>
         </div>
         <div class="mb-3 row">

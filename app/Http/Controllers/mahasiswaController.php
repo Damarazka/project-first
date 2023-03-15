@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\mahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class mahasiswaController extends Controller
 {
@@ -35,12 +36,27 @@ class mahasiswaController extends Controller
      */
     public function store(Request $request)
     {
+        Session::flash('nim',$request->nim);
+        Session::flash('nama',$request->nama);
+        Session::flash('jurusan',$request->jurusan);
+        $request->validate([
+            'nim'=>'required|numeric|unique:mahasiswa,nim',
+            'nama'=>'required',
+            'jurusan'=>'required',
+        ],[
+            'nim.required'=>'NIM wajib diisi',
+            'nim.numeric'=>'NIM wajib diisi dalam angka',
+            'nim.unique'=>'NIM yang diisi sudah ada pada database',
+            'nama.required'=>'Nama wajib diisi',
+            'jurusan.required'=>'Jurusan wajib diisi',
+        ]);
         $data = [
             'nim' =>$request->nim,
             'nama' =>$request->nama,
             'jurusan' =>$request->jurusan,
         ];
         mahasiswa::create($data);
+        return redirect()->to('mahasiswa')->with('success', 'Berhasil menambahkan data');
     }
 
     /**
