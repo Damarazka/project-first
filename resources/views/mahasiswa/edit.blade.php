@@ -4,8 +4,9 @@
     
 
 <!-- START FORM -->
-<form action='{{url('mahasiswa')}}' method='post'>
+<form action='{{url('mahasiswa/'.$data->nim)}}' method='post'>
     @csrf
+    @method('PUT')
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <a href="{{url('mahasiswa')}}" class="btn btn-secondary"><< Kembali</a>
         <div class="mb-3 row">

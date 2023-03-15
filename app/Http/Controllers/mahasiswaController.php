@@ -40,6 +40,7 @@ class mahasiswaController extends Controller
         Session::flash('nim',$request->nim);
         Session::flash('nama',$request->nama);
         Session::flash('jurusan',$request->jurusan);
+        
         $request->validate([
             'nim'=>'required|numeric|unique:mahasiswa,nim',
             'nama'=>'required',
@@ -92,7 +93,19 @@ class mahasiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama'=>'required',
+            'jurusan'=>'required',
+        ],[
+            'nama.required'=>'Nama wajib diisi',
+            'jurusan.required'=>'Jurusan wajib diisi',
+        ]);
+        $data = [
+            'nama' =>$request->nama,
+            'jurusan' =>$request->jurusan,
+        ];
+        mahasiswa::where('nim',$id)->update($data);
+        return redirect()->to('mahasiswa')->with('success', 'Berhasil malakukan update data');
     }
 
     /**
