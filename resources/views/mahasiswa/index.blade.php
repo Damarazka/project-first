@@ -39,7 +39,13 @@
                         <td>{{$item->jurusan}}</td>
                         <td>
                             <a href='{{url('mahasiswa/'.$item->nim.'/edit')}}' class="btn btn-warning btn-sm">Edit</a>
-                            <a href='' class="btn btn-danger btn-sm">Del</a>
+                            <form onsubmit="return confirm('Yakin ingin menghapus data ini?')" class="d-inline" action="{{url('mahasiswa/'.$item->nim)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                            <button type="submit" name="submit" class="btn btn-danger btn-sm">
+                                Del
+                            </button>
+                            </form>
                         </td>
                     </tr>
                     <?php $i++?>
