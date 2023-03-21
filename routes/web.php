@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\mahasiswaController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +21,7 @@ Route::get('/', function () {
 });
 
 Route::resource('mahasiswa',mahasiswaController::class);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
