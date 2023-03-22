@@ -19,8 +19,15 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', function () {
     return view('welcome');
 });
+    Route::get('/mahasiswa',[mahasiswaController::class, 'index'])->middleware('auth');
+    Route::get('/mahasiswa/create', [mahasiswaController::class, 'create'])->middleware('is_admin');
+    Route::get('/mahasiswa/{nim}', [mahasiswaController::class, 'show'])->middleware('is_admin'); 
+    Route::post('/mahasiswa', [mahasiswaController::class, 'store'])->middleware('is_admin'); 
+    Route::get('/mahasiswa/{nim}/edit', [mahasiswaController::class, 'edit'])->middleware('is_admin');
+    Route::put('/mahasiswa/{nim}', [mahasiswaController::class, 'update'])->middleware('is_admin'); 
+    Route::delete('/mahasiswa/{nim}', [mahasiswaController::class, 'destroy'])->middleware('is_admin');
 
-Route::resource('mahasiswa',mahasiswaController::class)->middleware('auth');
+//Route::resource('mahasiswa',mahasiswaController::class)->middleware('auth');
 
 Auth::routes();
 
