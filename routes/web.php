@@ -20,23 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('mahasiswa',mahasiswaController::class);
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::resource('mahasiswa',mahasiswaController::class)->middleware('auth');
 
 Auth::routes();
 

@@ -16,6 +16,9 @@
 
                     {{ __('You are logged in!') }}
                 </div>
+                <div class="mx-auto my-3 btn btn-success">
+                    <a href="{{url('mahasiswa')}}" class="text-dark" style="text-decoration: none;">Menuju Data</a>
+                </div>
             </div>
         </div>
     </div>

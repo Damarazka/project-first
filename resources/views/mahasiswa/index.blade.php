@@ -1,6 +1,6 @@
 
-@extends('layout.template')
-@section('konten')
+@extends('layouts.app')
+@section('content')
     
 
         <!-- START DATA -->
