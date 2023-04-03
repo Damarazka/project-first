@@ -15,9 +15,11 @@
             </div>
 
             <!-- TOMBOL TAMBAH DATA -->
+            @if (Auth::user()->role=='admin')
             <div class="pb-3">
                 <a href='{{url('mahasiswa/create')}}' class="btn btn-primary">+ Tambah Data</a>
             </div>
+            @endif
 
             <table class="table table-striped">
                 <thead>
@@ -26,7 +28,10 @@
                         <th class="col-md-3">NIM</th>
                         <th class="col-md-4">Nama</th>
                         <th class="col-md-2">Jurusan</th>
+                        @if (Auth::user()->role=='admin')
+                            
                         <th class="col-md-2">Aksi</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -37,6 +42,7 @@
                         <td>{{$item->nim}}</td>
                         <td>{{$item->nama}}</td>
                         <td>{{$item->jurusan}}</td>
+                        @if (Auth::user()->role=='admin')
                         <td>
                             <a href='{{url('mahasiswa/'.$item->nim.'/edit')}}' class="btn btn-warning btn-sm">Edit</a>
                             <form onsubmit="return confirm('Yakin ingin menghapus data ini?')" class="d-inline" action="{{url('mahasiswa/'.$item->nim)}}" method="POST">
@@ -47,6 +53,7 @@
                             </button>
                             </form>
                         </td>
+                        @endif
                     </tr>
                     <?php $i++?>
                     @endforeach
